@@ -25,7 +25,7 @@ public class Main {
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < b; j++) {
                 System.out.printf("%d ", array[i][j]);
-                if (j == 2)
+                if (j == b-1)
                     System.out.print("\n");
             }
         }
