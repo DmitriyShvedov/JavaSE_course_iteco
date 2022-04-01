@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] array = {3, 22, 1, 13, 4, 6, 16, 5};
+        int[] array = {3, 22, 1, 13, 4, 6, 16, 5, 100};
         int j = 0;
 
         System.out.print("Все элементы массива: ");
@@ -26,7 +26,7 @@ public class Main {
         System.out.print("\n" + "Двузначные элементы массива: ");
 
         for (int i = 0; i < array.length; i++){
-            if (array[i] > 10) {
+            if (array[i] > 10 & array[i] < 100){
                 System.out.print(array[i] + " ");
             }
         }
