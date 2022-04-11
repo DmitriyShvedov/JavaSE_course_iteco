@@ -155,6 +155,5 @@ public class Main {
             System.out.printf("%d ", i);
         }
 
-
     }
 }
