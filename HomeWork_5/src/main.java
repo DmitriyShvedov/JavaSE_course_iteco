@@ -4,6 +4,7 @@ public class main {
 
     public static int i = 0;
     public static int result = 0;
+    public static int tets = 0;
 
     public static void main(String[] args) {
 
