@@ -12,6 +12,7 @@ public class Main {
         int sumLine = 0;
         int averValue = 0;
         Scanner scanner = new Scanner(System.in);
+        //проба
 
         System.out.printf("Введите цифры через пробел либо по очереди, чтобы заполнить массив размером %d на %d: ", a, b);
 
