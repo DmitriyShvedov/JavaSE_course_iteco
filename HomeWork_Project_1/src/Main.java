@@ -1,41 +1,53 @@
 import java.util.Scanner;
 
 public class Main {
-    public static int result = 1;
+    public static int factorialResult = 1;
+
+    public static int lastNumberAfterOperation = 0;
 
     public static void main(String[] args) {
 
-        System.out.println("Введите цифру нужного меню");
         menuPrint(1);
-
-        Scanner scr = new Scanner(System.in);
-        int temp = scr.nextInt();
-
-        String num2 = menuChoice(temp);
-
-        String[] tempArray = num2.split(" ");
-
-        int[] afterParsToIntArray = parsStringToInt(tempArray);
-
-        System.out.println(identifOperation(tempArray, afterParsToIntArray));
 
     }
 
 
-
-    public static double identifOperation(String[] arrayStr, int[] arrayInt){
+    public static int identifOperation(String[] arrayStr, int[] arrayInt){
         switch (arrayStr[1]){
             case "+":
                 return addNumbers(arrayInt);
             case "-":
                 return subtrNumbers(arrayInt);
             case "/":
-                return divNumbers(arrayInt);
+                return (int)divNumbers(arrayInt);
             case "*":
                 return multNumbers(arrayInt);
             case "^":
                 return exponentNumber(arrayInt);
             case "!":
+                System.out.printf("\"!\" - %d! = ", arrayInt[0]);
+                return factNumbers(arrayInt);
+            case "?":
+                compNumber(arrayInt);
+
+        }
+        return 0;
+    }
+
+    public static int identifOperation(String arrayStr, int[] arrayInt){
+        switch (arrayStr){
+            case "+":
+                return addNumbers(arrayInt);
+            case "-":
+                return subtrNumbers(arrayInt);
+            case "/":
+                return (int)divNumbers(arrayInt);
+            case "*":
+                return multNumbers(arrayInt);
+            case "^":
+                return exponentNumber(arrayInt);
+            case "!":
+                System.out.printf("\"!\" - %d! = ", arrayInt[0]);
                 return factNumbers(arrayInt);
             case "?":
                 compNumber(arrayInt);
@@ -46,10 +58,15 @@ public class Main {
 
     public static void menuPrint(int i) {
         if(i == 1) {
+            System.out.println("Введите цифру нужного меню");
             System.out.println("1. Ввести пример.");
             System.out.println("2. Продолжить работать с предыдущим ответом.");
             System.out.println("3. Выход.");
+            Scanner scr = new Scanner(System.in);
+            int temp = scr.nextInt();
+            menuChoice(temp);
         }else {
+            System.out.println("Введите цифру нужного меню");
             System.out.println("1. Сложение");
             System.out.println("2. Вычитание");
             System.out.println("3. Умножение");
@@ -58,26 +75,75 @@ public class Main {
             System.out.println("6. Возведение в степень");
             System.out.println("7. Сравнение");
             System.out.println("8. Назад");
+            Scanner scr = new Scanner(System.in);
+            int temp = scr.nextInt();
+            menuChoice2(temp);
         }
     }
 
-    public static String inputExample() {
+    public static int inputExample() {
         Scanner scr = new Scanner(System.in);
-        return scr.nextLine();
+        String num = scr.nextLine();
+        String[] tempArray = num.split(" ");
+        int[] afterParsToIntArray = parsStringToInt(tempArray);
+        return identifOperation(tempArray,afterParsToIntArray);
+    }
+    public static int inputExample(int a, String sign){
+        Scanner scr = new Scanner(System.in);
+        int[] num = new int[2];
+        num[0] = a;
+        num[1] = scr.nextInt();
+        return identifOperation(sign, num);
     }
 
-    public static String menuChoice(int choiceNumber) {
+    public static int menuChoice(int choiceNumber) {
         switch (choiceNumber) {
             case 1:
                 System.out.print("Введите пример (напр. 3 * 3): ");
-                return inputExample();
+                lastNumberAfterOperation = inputExample();
+                System.out.println(lastNumberAfterOperation);
+                menuPrint(1);
             case 2:
-                    menuPrint(2);
+                menuPrint(2);
+
             case 3:
                 System.exit(0);
         }
+        return 1;
+    }
 
-        return "ок";
+    public static String menuChoice2(int choiceNumber){
+        switch (choiceNumber){
+            case 1:
+                System.out.printf("Сложение. Введите второе число (первый операнд. %d): ", lastNumberAfterOperation);
+                String sign = "+";
+                int newNumber = inputExample(lastNumberAfterOperation,sign);
+                System.out.println(newNumber);
+                menuPrint(1);
+            case 2:
+                System.out.println("2. Вычитание");
+                break;
+            case 3:
+                System.out.println("3. Умножение");
+                break;
+            case 4:
+                System.out.println("4. Деление");
+                break;
+            case 5:
+                System.out.println("5. Факториал");
+                break;
+            case 6:
+                System.out.println("6. Возведение в степень");
+                break;
+            case 7:
+                System.out.println("7. Сравнение");
+                break;
+            case 8:
+                menuPrint(1);
+            default:
+                System.out.println("Неверно");
+        }
+        return "ok";
     }
 
 
@@ -110,14 +176,17 @@ public class Main {
     }
 
     public static int factNumbers(int[] array) {
-        if (array[0] < 1) {
-            return result;
+
+        if (array[0] <= 1) {
+            System.out.print(array[0] +" = ");
+            return factorialResult;
         } else {
-            result *= array[0];
+            System.out.print(array[0] +" * ");
+            factorialResult *= array[0];
             array[0]--;
             factNumbers(array);
         }
-        return result;
+        return factorialResult;
     }
 
     public static int exponentNumber(int[] array) {
@@ -132,11 +201,11 @@ public class Main {
         int b = array[1];
 
         if (a > b) {
-            System.out.printf("\"?\" - %d > %d", a, b);
+            System.out.printf("\"?\" - %d > %d. ", a, b);
         } else if (a == b) {
-            System.out.printf("\"?\" - %d = %d", a, b);
+            System.out.printf("\"?\" - %d = %d. ", a, b);
         } else
-            System.out.printf("\"?\" - %d < %d", a, b);
+            System.out.printf("\"?\" - %d < %d. ", a, b);
     }
 
     public static int[] parsStringToInt(String[] array) {
