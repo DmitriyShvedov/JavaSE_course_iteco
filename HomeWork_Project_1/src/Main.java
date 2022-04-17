@@ -50,6 +50,7 @@ public class Main {
                 return exponentNumber(arrayInt);
             case "!":
                 System.out.printf("\"!\" - %d! = ", arrayInt[0]);
+                factorialResult = 1;
                 return factNumbers(arrayInt);
             case "?":
                 compNumber(arrayInt);
@@ -234,6 +235,7 @@ public class Main {
             return factorialResult;
         } else {
             System.out.print(array[0] +" * ");
+
             factorialResult *= array[0];
             array[0]--;
             factNumbers(array);
