@@ -195,7 +195,7 @@ public class Main {
                 sign = "?";
                 tempNumber = inputExample(lastNumberAfterOperation, sign);
                 lastNumberAfterOperation = tempNumber;
-                System.out.println(tempNumber);
+                System.out.println("");
 
                 menuPrint(1);
             case 8:
