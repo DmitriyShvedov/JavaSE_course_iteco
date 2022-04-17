@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -88,21 +89,13 @@ public class Main {
         }
     }
 
-    public static int inputExample() {
-        Scanner scr = new Scanner(System.in);
-        String num = scr.nextLine();
-        String[] tempArray = num.split(" ");
-        int[] afterParsToIntArray = parsStringToInt(tempArray);
-        return identifOperation(tempArray,afterParsToIntArray);
-    }
-
     public static int inputExample(int a, String sign){
-        if (sign != "!") {
+        if (!Objects.equals(sign, "!")) {
             Scanner scr = new Scanner(System.in);
             int[] num = new int[2];
             num[0] = a;
             num[1] = scr.nextInt();
-            if (num[1] == 0 && sign == "/"){
+            if (num[1] == 0 && Objects.equals(sign, "/")){
                 do {
                     System.out.print("На ноль делить нельзя! Введите еще раз 2ой операнд: ");
                     num[1] = scr.nextInt();
@@ -124,9 +117,17 @@ public class Main {
             case 1:
                 System.out.print("Введите пример (напр. 3 * 3): ");
                 checkValueJobProgram++;
-                lastNumberAfterOperation = inputExample();
-                System.out.println(lastNumberAfterOperation);
+                Scanner scr = new Scanner(System.in);
+                String num = scr.nextLine();
+                String[] tempArray = num.split(" ");
+                int[] afterParsToIntArray = parsStringToInt(tempArray);
 
+                if (Objects.equals(tempArray[1], "?")){
+                    compNumber(afterParsToIntArray);
+                    menuPrint(1);
+                }else
+                lastNumberAfterOperation = identifOperation(tempArray,afterParsToIntArray);
+                System.out.println(lastNumberAfterOperation);
                 menuPrint(1);
             case 2:
                 if (checkValueJobProgram == 0){
@@ -195,8 +196,7 @@ public class Main {
                 sign = "?";
                 tempNumber = inputExample(lastNumberAfterOperation, sign);
                 lastNumberAfterOperation = tempNumber;
-                System.out.println("");
-
+                System.out.println();
                 menuPrint(1);
             case 8:
                 menuPrint(1);
@@ -261,14 +261,14 @@ public class Main {
     public static void compNumber(int[] array) {
         int a = array[0];
         int b = array[1];
-        //Не засчитывается первый проход.
         checkValueJobProgram = 9;
+
         if (a > b) {
-            System.out.printf("\"?\" - %d > %d. ", a, b);
+            System.out.printf("\"?\" - %d > %d \n", a, b);
         } else if (a == b) {
-            System.out.printf("\"?\" - %d = %d. ", a, b);
+            System.out.printf("\"?\" - %d = %d \n", a, b);
         } else
-            System.out.printf("\"?\" - %d < %d. ", a, b);
+            System.out.printf("\"?\" - %d < %d \n", a, b);
     }
 
     public static int[] parsStringToInt(String[] array) {
