@@ -2,16 +2,15 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
+
     public static int factorialResult = 1;
 
     public static int lastNumberAfterOperation = 0;
 
-    public static int checkValueJobProgram = 0;
+    static int checkValueJobProgram = 0;
 
     public static void main(String[] args) {
-
         menuPrint(1);
-
     }
 
 
@@ -61,9 +60,6 @@ public class Main {
     }
 
 
-
-
-
     public static void menuPrint(int i) {
         if(i == 1) {
             System.out.println("Введите цифру нужного меню");
@@ -90,8 +86,8 @@ public class Main {
     }
 
     public static int inputExample(int a, String sign){
+        Scanner scr = new Scanner(System.in);
         if (!Objects.equals(sign, "!")) {
-            Scanner scr = new Scanner(System.in);
             int[] num = new int[2];
             num[0] = a;
             num[1] = scr.nextInt();
@@ -107,12 +103,19 @@ public class Main {
         }else{
             int [] num = new int[1];
             num[0] = a;
+            if (a < 0){
+                do{
+                    System.out.println("Введите положительный операнд!: ");
+                    a = scr.nextInt();
+                }while (a < 0);
+                num[0] = a;
+            }
             return identifOperation(sign, num);
         }
 
     }
 
-    public static int menuChoice(int choiceNumber) {
+    public static void menuChoice(int choiceNumber) {
         switch (choiceNumber) {
             case 1:
                 System.out.print("Введите пример (напр. 3 * 3): ");
@@ -141,11 +144,13 @@ public class Main {
                     }
             case 3:
                 System.exit(0);
+            default:
+                System.out.print("Неверно, ");
+                menuPrint(1);
         }
-        return 1;
     }
 
-    public static String menuChoice2(int choiceNumber){
+    public static void menuChoice2(int choiceNumber){
         String sign;
         int tempNumber = 0;
         switch (choiceNumber){
@@ -204,7 +209,6 @@ public class Main {
                 System.out.print("Неверно, ");
                 menuPrint(2);
         }
-        return "ok";
     }
 
 
