@@ -102,7 +102,15 @@ public class Main {
             int[] num = new int[2];
             num[0] = a;
             num[1] = scr.nextInt();
-            return identifOperation(sign, num);
+            if (num[1] == 0 && sign == "/"){
+                do {
+                    System.out.print("На ноль делить нельзя! Введите еще раз 2ой операнд: ");
+                    num[1] = scr.nextInt();
+                }while(num[1] == 0);
+                return identifOperation(sign, num);
+            }else{
+                return identifOperation(sign, num);
+            }
         }else{
             int [] num = new int[1];
             num[0] = a;
