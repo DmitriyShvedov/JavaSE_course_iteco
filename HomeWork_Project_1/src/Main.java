@@ -5,6 +5,8 @@ public class Main {
 
     public static int lastNumberAfterOperation = 0;
 
+    public static int checkValueJobProgram = 0;
+
     public static void main(String[] args) {
 
         menuPrint(1);
@@ -56,6 +58,10 @@ public class Main {
         return 0;
     }
 
+
+
+
+
     public static void menuPrint(int i) {
         if(i == 1) {
             System.out.println("Введите цифру нужного меню");
@@ -88,24 +94,41 @@ public class Main {
         int[] afterParsToIntArray = parsStringToInt(tempArray);
         return identifOperation(tempArray,afterParsToIntArray);
     }
+
     public static int inputExample(int a, String sign){
-        Scanner scr = new Scanner(System.in);
-        int[] num = new int[2];
-        num[0] = a;
-        num[1] = scr.nextInt();
-        return identifOperation(sign, num);
+        if (sign != "!") {
+            Scanner scr = new Scanner(System.in);
+            int[] num = new int[2];
+            num[0] = a;
+            num[1] = scr.nextInt();
+            return identifOperation(sign, num);
+        }else{
+            int [] num = new int[1];
+            num[0] = a;
+            return identifOperation(sign, num);
+        }
+
     }
 
     public static int menuChoice(int choiceNumber) {
         switch (choiceNumber) {
             case 1:
                 System.out.print("Введите пример (напр. 3 * 3): ");
+                checkValueJobProgram++;
                 lastNumberAfterOperation = inputExample();
                 System.out.println(lastNumberAfterOperation);
+
                 menuPrint(1);
             case 2:
-                menuPrint(2);
-
+                if (checkValueJobProgram == 0){
+                    System.out.print("До этого не было произведено операций! ");
+                    menuPrint(1);
+                }else if(checkValueJobProgram == 9){
+                    System.out.println("Работать с предыдущим операндом невозможно!");
+                    menuPrint(1);
+                }else{
+                    menuPrint(2);
+                    }
             case 3:
                 System.exit(0);
         }
@@ -113,35 +136,64 @@ public class Main {
     }
 
     public static String menuChoice2(int choiceNumber){
+        String sign;
+        int tempNumber = 0;
         switch (choiceNumber){
             case 1:
-                System.out.printf("Сложение. Введите второе число (первый операнд. %d): ", lastNumberAfterOperation);
-                String sign = "+";
-                int newNumber = inputExample(lastNumberAfterOperation,sign);
-                System.out.println(newNumber);
+                System.out.printf("Сложение. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
+                sign = "+";
+                tempNumber = inputExample(lastNumberAfterOperation,sign);
+                lastNumberAfterOperation = tempNumber;
+                System.out.println(tempNumber);
                 menuPrint(1);
             case 2:
-                System.out.println("2. Вычитание");
-                break;
+                System.out.printf("Вычитание. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
+                sign = "-";
+                tempNumber = inputExample(lastNumberAfterOperation, sign);
+                lastNumberAfterOperation = tempNumber;
+                System.out.println(tempNumber);
+                menuPrint(1);
             case 3:
-                System.out.println("3. Умножение");
-                break;
+                System.out.printf("Умножение. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
+                sign = "*";
+                tempNumber = inputExample(lastNumberAfterOperation, sign);
+                lastNumberAfterOperation = tempNumber;
+                System.out.println(tempNumber);
+                menuPrint(1);
             case 4:
-                System.out.println("4. Деление");
-                break;
+                System.out.printf("Деление. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
+                sign = "/";
+                tempNumber = inputExample(lastNumberAfterOperation, sign);
+                lastNumberAfterOperation = tempNumber;
+                System.out.println(tempNumber);
+                menuPrint(1);
             case 5:
-                System.out.println("5. Факториал");
-                break;
+                System.out.printf("Операнд - %d: ", lastNumberAfterOperation);
+                sign = "!";
+                tempNumber = inputExample(lastNumberAfterOperation, sign);
+                lastNumberAfterOperation = tempNumber;
+                System.out.println(tempNumber);
+                menuPrint(1);
             case 6:
-                System.out.println("6. Возведение в степень");
-                break;
+                System.out.printf("Возведение в степень. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
+                sign = "^";
+                tempNumber = inputExample(lastNumberAfterOperation, sign);
+                lastNumberAfterOperation = tempNumber;
+                System.out.println(tempNumber);
+                menuPrint(1);
             case 7:
-                System.out.println("7. Сравнение");
-                break;
+                System.out.printf("Сравнение. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
+                sign = "?";
+                tempNumber = inputExample(lastNumberAfterOperation, sign);
+                lastNumberAfterOperation = tempNumber;
+                System.out.println(tempNumber);
+
+                menuPrint(1);
             case 8:
                 menuPrint(1);
             default:
-                System.out.println("Неверно");
+                System.out.print("Неверно, ");
+                menuPrint(2);
         }
         return "ok";
     }
@@ -199,7 +251,8 @@ public class Main {
     public static void compNumber(int[] array) {
         int a = array[0];
         int b = array[1];
-
+        //Не засчитывается первый проход.
+        checkValueJobProgram = 9;
         if (a > b) {
             System.out.printf("\"?\" - %d > %d. ", a, b);
         } else if (a == b) {
