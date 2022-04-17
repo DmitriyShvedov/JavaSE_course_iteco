@@ -157,51 +157,43 @@ public class Main {
             case 1:
                 System.out.printf("Сложение. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
                 sign = "+";
-                tempNumber = inputExample(lastNumberAfterOperation,sign);
-                lastNumberAfterOperation = tempNumber;
-                System.out.println(tempNumber);
+                lastNumberAfterOperation = inputExample(lastNumberAfterOperation,sign);
+                System.out.println(lastNumberAfterOperation);
                 menuPrint(1);
             case 2:
                 System.out.printf("Вычитание. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
                 sign = "-";
-                tempNumber = inputExample(lastNumberAfterOperation, sign);
-                lastNumberAfterOperation = tempNumber;
-                System.out.println(tempNumber);
+                lastNumberAfterOperation = inputExample(lastNumberAfterOperation,sign);
+                System.out.println(lastNumberAfterOperation);
                 menuPrint(1);
             case 3:
                 System.out.printf("Умножение. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
                 sign = "*";
-                tempNumber = inputExample(lastNumberAfterOperation, sign);
-                lastNumberAfterOperation = tempNumber;
-                System.out.println(tempNumber);
+                lastNumberAfterOperation = inputExample(lastNumberAfterOperation,sign);
+                System.out.println(lastNumberAfterOperation);
                 menuPrint(1);
             case 4:
                 System.out.printf("Деление. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
                 sign = "/";
-                tempNumber = inputExample(lastNumberAfterOperation, sign);
-                lastNumberAfterOperation = tempNumber;
-                System.out.println(tempNumber);
+                lastNumberAfterOperation = inputExample(lastNumberAfterOperation,sign);
+                System.out.println(lastNumberAfterOperation);
                 menuPrint(1);
             case 5:
-                System.out.printf("Операнд - %d: ", lastNumberAfterOperation);
+                System.out.printf("Вычисление факториала. Операнд - %d: ", lastNumberAfterOperation);
                 sign = "!";
-                tempNumber = inputExample(lastNumberAfterOperation, sign);
-                lastNumberAfterOperation = tempNumber;
-                System.out.println(tempNumber);
+                lastNumberAfterOperation = inputExample(lastNumberAfterOperation,sign);
+                System.out.println(lastNumberAfterOperation);
                 menuPrint(1);
             case 6:
                 System.out.printf("Возведение в степень. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
                 sign = "^";
-                tempNumber = inputExample(lastNumberAfterOperation, sign);
-                lastNumberAfterOperation = tempNumber;
-                System.out.println(tempNumber);
+                lastNumberAfterOperation = inputExample(lastNumberAfterOperation,sign);
+                System.out.println(lastNumberAfterOperation);
                 menuPrint(1);
             case 7:
                 System.out.printf("Сравнение. Введите второе число, первый операнд - %d): ", lastNumberAfterOperation);
                 sign = "?";
-                tempNumber = inputExample(lastNumberAfterOperation, sign);
-                lastNumberAfterOperation = tempNumber;
-                System.out.println();
+                lastNumberAfterOperation = inputExample(lastNumberAfterOperation,sign);
                 menuPrint(1);
             case 8:
                 menuPrint(1);
