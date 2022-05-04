@@ -14,5 +14,8 @@ public class Main {
         employee1.eating();
 
         client1.print();
+        employee1.print();
+
+        client1.wantEating();
     }
 }

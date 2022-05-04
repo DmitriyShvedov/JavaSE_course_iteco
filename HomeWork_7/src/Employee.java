@@ -1,4 +1,4 @@
-public class Employee extends Person implements Printable {
+public class Employee extends Person implements Printable, SeasonHandler {
 
 
     @Override
@@ -11,6 +11,12 @@ public class Employee extends Person implements Printable {
     public void wantEating() {
         wantEat = true;
         System.out.println("Работодатель покушал");
+    }
+
+    @Override
+    public void print() {
+        for(Season season : Season.values())
+            System.out.printf("Empl. Сейчас %s, цвет сезона - %s \n" , season.name(), season.getColor() );
     }
 
     @Override

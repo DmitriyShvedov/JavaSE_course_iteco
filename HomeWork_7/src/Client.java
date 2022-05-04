@@ -10,7 +10,7 @@ public class Client extends Person implements Printable, SeasonHandler {
     @Override
     public void wantEating() {
         wantEat = true;
-        System.out.println("Клиент покушал");
+        System.out.println("Клиент захотел кушать");
     }
 
     @Override
