@@ -1,3 +1,3 @@
-public interface SeasonHandler {
+public interface SeasonHandler   {
     void print();
 }

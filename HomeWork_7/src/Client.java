@@ -1,28 +1,27 @@
 public class Client extends Person implements Printable, SeasonHandler {
 
-    private int id;
 
     @Override
     public void eating() {
+        wantEat = false;
+        System.out.println("Клиент покушал");
+    }
+
+    @Override
+    public void wantEating() {
         wantEat = true;
         System.out.println("Клиент покушал");
     }
 
     @Override
     public void print() {
-
+        for(Season season : Season.values())
+        System.out.printf("Сейчас %s, цвет сезона - %s \n" , season.name(), season.getColor() );
     }
 
     @Override
     public void printVariebles() {
-        System.out.println(getId());
+        System.out.println(super.getId());
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }
