@@ -11,10 +11,6 @@ public class ClassException extends NumberFormatException {
         return num;
     }
 
-    public ClassException(String massage, int a) {
-        super(massage);
-        this.num = a;
-    }
 
     public ClassException(String massage, char a) {
         super(massage);
